@@ -1,7 +1,7 @@
 /**
  * CDN configuration for loading assets from jsDelivr
- * When published to npm as @unwrite/images, files are automatically available at:
- * https://cdn.jsdelivr.net/npm/@unwrite/images@VERSION/dist/
+ * When published to npm as unwrite-images, files are automatically available at:
+ * https://cdn.jsdelivr.net/npm/unwrite-images@VERSION/dist/
  */
 
 declare global {
@@ -14,7 +14,7 @@ declare global {
 // Allow override via window globals for testing/development
 const CDN_BASE = typeof window !== 'undefined' && window.UNWRITE_IMAGES_CDN 
   ? window.UNWRITE_IMAGES_CDN 
-  : 'https://cdn.jsdelivr.net/npm/@unwrite/images';
+  : 'https://cdn.jsdelivr.net/npm/unwrite-images';
 
 const VERSION = typeof window !== 'undefined' && window.UNWRITE_IMAGES_VERSION 
   ? window.UNWRITE_IMAGES_VERSION 

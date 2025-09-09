@@ -12,13 +12,13 @@ All processing happens locally in your browser using Web Workers and WebAssembly
 
 ### Via NPM
 ```bash
-npm install @unwrite/images
+npm install unwrite-images
 ```
 
 ### Via CDN (jsDelivr)
 ```html
 <script type="module">
-  import mountUnwriteImages from 'https://cdn.jsdelivr.net/npm/@unwrite/images@0.1.0/dist/mount.js';
+  import mountUnwriteImages from 'https://cdn.jsdelivr.net/npm/unwrite-images@0.1.0/dist/mount.js';
   
   const container = document.getElementById('image-editor');
   const dispose = mountUnwriteImages(container);
@@ -29,13 +29,13 @@ npm install @unwrite/images
 
 ### Mount API
 ```ts
-import mountUnwriteImages from '@unwrite/images';
+import mountUnwriteImages from 'unwrite-images';
 
 const el = document.getElementById('container')!;
 const dispose = mountUnwriteImages(el, { 
   theme: 'inherit',
   // Optional: Override CDN configuration
-  cdnBase: 'https://cdn.jsdelivr.net/npm/@unwrite/images',
+  cdnBase: 'https://cdn.jsdelivr.net/npm/unwrite-images',
   version: '0.1.0'
 });
 
@@ -53,8 +53,8 @@ dispose();
 
 When installed via npm and published, Unwrite Images is automatically available via jsDelivr CDN:
 
-- Main bundle: `https://cdn.jsdelivr.net/npm/@unwrite/images@VERSION/dist/mount.js`
-- WASM codecs: `https://cdn.jsdelivr.net/npm/@unwrite/images@VERSION/dist/chunks/codecs/`
+- Main bundle: `https://cdn.jsdelivr.net/npm/unwrite-images@VERSION/dist/mount.js`
+- WASM codecs: `https://cdn.jsdelivr.net/npm/unwrite-images@VERSION/dist/chunks/codecs/`
 
 This significantly reduces the bundle size of your main application by loading image processing codecs on-demand from the CDN.
 

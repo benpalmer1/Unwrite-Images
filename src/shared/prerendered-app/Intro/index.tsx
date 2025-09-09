@@ -14,7 +14,7 @@ import smallSectionAsset from 'url:./imgs/info-content/small.svg';
 import simpleSectionAsset from 'url:./imgs/info-content/simple.svg';
 import secureSectionAsset from 'url:./imgs/info-content/secure.svg';
 import logoIcon from 'url:./imgs/demos/icon-demo-logo.png';
-import logoWithText from 'data-url-text:./imgs/logo-with-text.svg';
+import logoWithText from 'url:./imgs/logo.svg';
 import * as style from './style.css';
 import type SnackBarElement from 'shared/custom-els/snack-bar';
 import 'shared/custom-els/snack-bar';
@@ -46,7 +46,7 @@ const demos = [
   {
     description: 'SVG icon',
     size: '13KB',
-    filename: 'squoosh.svg',
+    filename: 'logo.svg',
     url: logo,
     iconUrl: logoIcon,
   },
@@ -88,13 +88,13 @@ export default class Intro extends Component<Props, State> {
   private installingViaButton = false;
 
   componentDidMount() {
-    // Listen for beforeinstallprompt events, indicating Squoosh is installable.
+    // Listen for beforeinstallprompt events, indicating Unwrite Images is installable.
     window.addEventListener(
       'beforeinstallprompt',
       this.onBeforeInstallPromptEvent,
     );
 
-    // Listen for the appinstalled event, indicating Squoosh has been installed.
+    // Listen for the appinstalled event, indicating Unwrite Images has been installed.
     window.addEventListener('appinstalled', this.onAppInstalled);
 
     if (blobAnimImport) {
@@ -244,7 +244,7 @@ export default class Intro extends Component<Props, State> {
             <img
               class={style.logo}
               src={logoWithText}
-              alt="Squoosh"
+              alt="Unwrite Images"
               width="539"
               height="162"
             />
@@ -357,8 +357,8 @@ export default class Intro extends Component<Props, State> {
                 <div class={style.infoTextWrapper}>
                   <h2 class={style.infoTitle}>Small</h2>
                   <p class={style.infoCaption}>
-                    Smaller images mean faster load times. Squoosh can reduce
-                    file size and maintain high quality.
+                    Smaller images mean faster load times. Unwrite Images can reduce
+                    file size while maintaining high quality.
                   </p>
                 </div>
                 <div class={style.infoImgWrapper}>
@@ -409,7 +409,7 @@ export default class Intro extends Component<Props, State> {
                   <h2 class={style.infoTitle}>Secure</h2>
                   <p class={style.infoCaption}>
                     Worried about privacy? Images never leave your device since
-                    Squoosh does all the work locally.
+                    Unwrite Images does all the work locally.
                   </p>
                 </div>
                 <div class={style.infoImgWrapper}>
@@ -438,13 +438,13 @@ export default class Intro extends Component<Props, State> {
               <footer class={style.footerItems}>
                 <a
                   class={style.footerLink}
-                  href="https://github.com/GoogleChromeLabs/squoosh/blob/dev/README.md#privacy"
+                  href="https://unwrite.co/images/privacy"
                 >
                   Privacy
                 </a>
                 <a
                   class={style.footerLinkWithLogo}
-                  href="https://github.com/GoogleChromeLabs/squoosh"
+                  href="https://github.com/benpalmer1/Unwrite-Images"
                 >
                   <img src={githubLogo} alt="" width="10" height="10" />
                   Source on Github

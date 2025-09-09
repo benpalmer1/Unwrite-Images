@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+declare const __EMBEDDED__: boolean;
 
 import * as style from './style.css';
 import 'add-css:./style.css';
@@ -333,7 +334,9 @@ export default class Compress extends Component<Props, State> {
     this.sourceFile = props.file;
     this.queueUpdateImage({ immediate: true });
 
-    import('../sw-bridge').then(({ mainAppLoaded }) => mainAppLoaded());
+    if (!__EMBEDDED__) {
+      import('../sw-bridge').then(({ mainAppLoaded }) => mainAppLoaded());
+    }
   }
 
   private onMobileWidthChange = () => {

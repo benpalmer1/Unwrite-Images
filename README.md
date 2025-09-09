@@ -1,38 +1,78 @@
-# [Squoosh]!
+# Unwrite Images
 
-[Squoosh] is an image compression web app that reduces image sizes through numerous formats.
+Unwrite Images is a fork of Squoosh that keeps everything client‑side and provides a simple mount API for embedding inside Unwrite (or any web app).
 
-# Privacy
+It helps you optimise images for the web: reduce file size while keeping quality, preview results side‑by‑side, and save the version that looks best.
 
-Squoosh does not send your image to a server. All image compression processes locally.
+## Privacy
 
-However, Squoosh utilizes Google Analytics to collect the following:
+All processing happens locally in your browser using Web Workers and WebAssembly. Images are not uploaded to a server.
 
-- [Basic visitor data](https://support.google.com/analytics/answer/6004245?ref_topic=2919631).
-- The before and after image size value.
-- If Squoosh PWA, the type of Squoosh installation.
-- If Squoosh PWA, the installation time and date.
+## Installation
 
-# Developing
+### Via NPM
+```bash
+npm install @unwrite/images
+```
 
-To develop for Squoosh:
+### Via CDN (jsDelivr)
+```html
+<script type="module">
+  import mountUnwriteImages from 'https://cdn.jsdelivr.net/npm/@unwrite/images@0.1.0/dist/mount.js';
+  
+  const container = document.getElementById('image-editor');
+  const dispose = mountUnwriteImages(container);
+</script>
+```
 
-1. Clone the repository
-1. To install node packages, run:
+## Usage
+
+### Mount API
+```ts
+import mountUnwriteImages from '@unwrite/images';
+
+const el = document.getElementById('container')!;
+const dispose = mountUnwriteImages(el, { 
+  theme: 'inherit',
+  // Optional: Override CDN configuration
+  cdnBase: 'https://cdn.jsdelivr.net/npm/@unwrite/images',
+  version: '0.1.0'
+});
+
+// Clean up when done
+dispose();
+```
+
+### Options
+
+- `theme`: 'inherit' | 'light' | 'dark' (default: 'inherit')
+- `cdnBase`: Optional CDN base URL override
+- `version`: Optional version for CDN URLs
+
+## CDN Hosting
+
+When installed via npm and published, Unwrite Images is automatically available via jsDelivr CDN:
+
+- Main bundle: `https://cdn.jsdelivr.net/npm/@unwrite/images@VERSION/dist/mount.js`
+- WASM codecs: `https://cdn.jsdelivr.net/npm/@unwrite/images@VERSION/dist/chunks/codecs/`
+
+This significantly reduces the bundle size of your main application by loading image processing codecs on-demand from the CDN.
+
+## Developing
+
+1. Install dependencies
    ```sh
    npm install
    ```
-1. Then build the app by running:
+2. Build the project (generates static site build and the mount wrapper in `dist/`)
    ```sh
    npm run build
    ```
-1. After building, start the development server by running:
+3. Start the dev server for the static app
    ```sh
    npm run dev
    ```
 
-# Contributing
+## License
 
-Squoosh is an open-source project that appreciates all community involvement. To contribute to the project, follow the [contribute guide](/CONTRIBUTING.md).
-
-[squoosh]: https://squoosh.app
+Licensed under Apache-2.0. See `LICENSE` and `NOTICE` for attributions and third‑party licences.

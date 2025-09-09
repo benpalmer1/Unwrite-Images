@@ -15,7 +15,17 @@ import 'shared/custom-els/loading-spinner';
 const ROUTE_EDITOR = '/editor';
 
 const compressPromise = import('client/lazy-app/Compress');
-const swBridgePromise = import('client/lazy-app/sw-bridge');
+// In embedded usage (Unwrite), disable service worker integration.
+declare const __EMBEDDED__: boolean;
+const swBridgePromise: Promise<{
+  offliner: (showSnack: any) => void;
+  getSharedImage: () => Promise<File | undefined>;
+}> = (__EMBEDDED__)
+  ? Promise.resolve({
+      offliner: () => {},
+      getSharedImage: async () => undefined,
+    })
+  : import('client/lazy-app/sw-bridge');
 
 function back() {
   window.history.back();

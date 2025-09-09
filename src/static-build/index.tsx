@@ -55,13 +55,13 @@ interface Output {
 const toOutput: Output = {
   'index.html': renderPage(<IndexPage />),
   'manifest.json': JSON.stringify({
-    name: 'Squoosh',
-    short_name: 'Squoosh',
+    name: 'Unwrite Images',
+    short_name: 'Unwrite Images',
     start_url: '/?utm_medium=PWA&utm_source=launcher',
     display: 'standalone',
     orientation: 'any',
     background_color: '#fff',
-    theme_color: '#ff3385',
+    theme_color: '#0ea5e9',
     icons: [
       {
         src: iconLarge.default,
@@ -76,7 +76,7 @@ const toOutput: Output = {
       },
     ],
     description:
-      'Compress and compare images with different codecs, right in your browser.',
+      'Optimise images for the web. Shrink file sizes, compare results side‑by‑side, and save the best quality.',
     lang: 'en',
     categories: ['photo', 'productivity', 'utilities'],
     screenshots,

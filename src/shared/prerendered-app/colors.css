@@ -1,22 +1,29 @@
 html {
-  --pink: #ff3385;
-  --hot-pink: #ff0066;
-  --white: #fff;
+  /* Theme bridge to Unwrite tokens */
+  --ui-fg: var(--colour-text-primary, #111);
+  --ui-bg: var(--colour-background, #fff);
+  --ui-accent: var(--colour-accent, #0ea5e9);
+  --ui-border: var(--colour-border, #e5e7eb);
+
+  /* Map existing palette to theme variables */
+  --pink: var(--ui-accent);
+  --hot-pink: var(--ui-accent);
+  --white: var(--ui-bg);
   --black: #000;
-  --off-black: #1d1d1d;
-  --blue: #5fb4e4;
-  --dim-blue: #0a7bcc;
-  --deep-blue: #09f;
-  --light-blue: #76c8ff;
-  --less-light-gray: #bcbcbc;
-  --medium-light-gray: #d1d1d1;
-  --light-gray: #eaeaea;
+  --off-black: var(--ui-fg);
+  --blue: var(--ui-accent);
+  --dim-blue: var(--ui-accent);
+  --deep-blue: var(--ui-accent);
+  --light-blue: var(--ui-accent);
+  --less-light-gray: var(--ui-border);
+  --medium-light-gray: var(--ui-border);
+  --light-gray: var(--ui-border);
   --dark-gray: #333;
-  --dim-text: #343a3e;
-  --dark-text: #142630;
+  --dim-text: var(--colour-text-secondary, #343a3e);
+  --dark-text: var(--ui-fg);
 
   /* Old stuff: */
-  --button-fg: rgb(95, 180, 228);
+  --button-fg: var(--ui-accent, rgb(95, 180, 228));
 }
 
 @media (dynamic-range: high) {

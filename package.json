@@ -1,17 +1,58 @@
 {
-  "private": true,
-  "name": "squoosh",
-  "version": "2.0.0",
-  "license": "apache-2.0",
+  "name": "@unwrite/images",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "type": "module",
+  "description": "Unwrite Images: Squoosh-based image tools with a simple mount API.",
+  "module": "dist/mount.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mount.js"
+    }
+  },
+  "types": "src/client/wrapper/mount.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist/",
+    "src/client/wrapper/mount.d.ts",
+    "LICENSE",
+    "NOTICE",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benpalmer1/Unwrite-Images.git"
+  },
+  "keywords": [
+    "image",
+    "compression",
+    "optimization",
+    "webp",
+    "avif",
+    "jpeg",
+    "png",
+    "unwrite"
+  ],
+  "author": "Unwrite",
+  "bugs": {
+    "url": "https://github.com/benpalmer1/Unwrite-Images/issues"
+  },
+  "homepage": "https://github.com/benpalmer1/Unwrite-Images#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "rollup -c && node lib/move-output.js",
-    "debug": "node --inspect-brk node_modules/.bin/rollup -c",
-    "dev": "DEV_PORT=\"${DEV_PORT:=5000}\" run-p watch serve",
-    "watch": "rollup -cw",
-    "serve": "serve --listen=$DEV_PORT --config ../../../serve.json .tmp/build/static",
-    "prepare": "husky install"
+    "build": "rollup -c rollup.config.mjs && node lib/move-output.js",
+    "build:cdn": "node scripts/build-cdn.mjs",
+    "debug": "node --inspect-brk node_modules/.bin/rollup -c rollup.config.mjs",
+    "dev": "node scripts/dev.mjs",
+    "watch": "node scripts/rollup-watch.mjs",
+    "serve": "node scripts/serve.mjs",
+    "prepare": "husky install",
+    "prepublishOnly": "npm run build:cdn"
   },
   "devDependencies": {
+    "@rollup/plugin-alias": "^3.1.5",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.1.0",
     "@rollup/plugin-replace": "^2.3.4",

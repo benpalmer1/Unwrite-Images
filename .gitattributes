@@ -1,2 +1,16 @@
+# Text file line endings
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Binary files
+*.wasm binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+
+# Generated files
 /codecs/**/*.js linguist-generated -diff
 /codecs/*/pkg*/*.d.ts linguist-generated

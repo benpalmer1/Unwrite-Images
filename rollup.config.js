@@ -18,6 +18,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import OMT from '@surma/rollup-plugin-off-main-thread';
 import replace from '@rollup/plugin-replace';
+import alias from '@rollup/plugin-alias';
 import { importMetaAssets } from '@web/rollup-plugin-import-meta-assets';
 
 import simpleTS from './lib/simple-ts';
@@ -59,7 +60,7 @@ function jsFileName(chunkInfo) {
   const parsedPath = path.parse(chunkInfo.facadeModuleId);
   if (parsedPath.name !== 'index') return jsPath;
   // Come up with a better name than 'index'
-  const name = parsedPath.dir.split(/\\|\//).slice(-1);
+  const name = parsedPath.dir.split(/[\\/]/).pop();
   return jsPath.replace('[name]', name);
 }
 
@@ -94,14 +95,17 @@ export default async function ({ watch }) {
     cssPlugin(),
   ];
 
-  return {
+  const staticConfig = {
     input: 'src/static-build/index.tsx',
     output: {
       dir,
       format: 'cjs',
       assetFileNames: staticPath,
       exports: 'named',
+      entryFileNames: 'static-build/index.cjs',
+      chunkFileNames: 'static-build/[name]-[hash].cjs',
     },
+    preserveEntrySignatures: false,
     watch: {
       clearScreen: false,
       // Don't watch the ts files. Instead we watch the output from the ts compiler.
@@ -148,9 +152,60 @@ export default async function ({ watch }) {
       emitFiles({ include: '**/*', root: path.join(__dirname, 'src', 'copy') }),
       nodeExternalPlugin(),
       featurePlugin(),
-      replace({ __PRERENDER__: true, __PRODUCTION__: isProduction }),
+      replace({ __PRERENDER__: true, __PRODUCTION__: isProduction, __EMBEDDED__: false }),
       initialCssPlugin(),
       runScript(dir + '/static-build/index.js'),
     ],
   };
+
+  // Library build for the mount wrapper used by Unwrite.
+  const wrapperConfig = {
+    input: 'src/client/wrapper/mount.tsx',
+    output: {
+      dir: 'dist',
+      format: 'esm',
+      entryFileNames: 'mount.js',
+      chunkFileNames: 'chunks/[name]-[hash].js',
+      assetFileNames: 'assets/[name]-[hash][extname]',
+      sourcemap: isProduction,
+    },
+    preserveEntrySignatures: false,
+    plugins: [
+      alias({
+        entries: [
+          {
+            find: 'client/lazy-app/sw-bridge',
+            replacement: 'client/wrapper/stubs/sw-bridge',
+          },
+          {
+            // Match any relative id ending in sw-bridge and replace the whole id
+            find: /^(?:.*\/)?sw-bridge$/,
+            replacement: 'client/wrapper/stubs/sw-bridge',
+          },
+        ],
+      }),
+      OMT({ loader: await omtLoaderPromise }),
+      importMetaAssets(),
+      tsPluginInstance,
+      resolveDirsPlugin([
+        'src/static-build',
+        'src/client',
+        'src/shared',
+        'src/features',
+        'src/features-worker',
+        'src/features-worker-worker-bridge',
+        'src/sw',
+        'src/worker-shared',
+        'codecs',
+      ]),
+      urlPlugin(),
+      dataURLPlugin(),
+      cssPlugin(),
+      commonjs(),
+      resolve(),
+      replace({ __PRERENDER__: false, __PRODUCTION__: isProduction, __EMBEDDED__: true }),
+    ],
+  };
+
+  return [staticConfig, wrapperConfig];
 }

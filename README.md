@@ -73,6 +73,11 @@ This significantly reduces the bundle size of your main application by loading i
    npm run dev
    ```
 
+## Branches
+
+- `main` - Stable production releases
+- `dev` - Active development
+
 ## License
 
 Licensed under Apache-2.0. See `LICENSE` and `NOTICE` for attributions and third‑party licences.

@@ -43,6 +43,13 @@ Thank you for your interest in contributing to Unwrite Images! This document pro
 4. Update documentation if needed
 5. Submit a pull request to the `dev` branch
 
+## Branch Strategy
+
+- `main` - Production branch (stable releases)
+- `dev` - Development branch (active development)
+
+All development work should be done against the `dev` branch. The `main` branch is updated only for stable releases.
+
 ## Code Style
 
 - Use TypeScript for new code

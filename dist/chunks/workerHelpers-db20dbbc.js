@@ -51,7 +51,7 @@ waitForMsgType(self, 'wasm_bindgen_worker_init').then(async data => {
   // OTOH, even though it can't be inlined, it should be still reasonably
   // cheap since the requested file is already in cache (it was loaded by
   // the main thread).
-  const pkg = await import('./squoosh_oxipng-5de956c5.js');
+  const pkg = await import('./squoosh_oxipng-cef97fb8.js');
   await pkg.default(data.module, data.memory);
   postMessage({ type: 'wasm_bindgen_worker_ready' });
   pkg.wbg_rayon_start_worker(data.receiver);
@@ -84,7 +84,7 @@ async function startWorkers(module, memory, builder) {
         //
         // The only way to work around that is to have side effect code
         // in an entry point such as Worker file itself.
-        const worker = new Worker(new URL("workerHelpers-9c95fbb5.js", import.meta.url), {
+        const worker = new Worker(new URL("workerHelpers-db20dbbc.js", import.meta.url), {
           type: 'module'
         });
         worker.postMessage(workerInit);
@@ -98,4 +98,4 @@ async function startWorkers(module, memory, builder) {
 }
 
 export { startWorkers };
-//# sourceMappingURL=workerHelpers-9c95fbb5.js.map
+//# sourceMappingURL=workerHelpers-db20dbbc.js.map

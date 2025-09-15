@@ -84,7 +84,7 @@ async function startWorkers(module, memory, builder) {
         //
         // The only way to work around that is to have side effect code
         // in an entry point such as Worker file itself.
-        const worker = new Worker(new URL("workerHelpers-9c95fbb5.js", import.meta.url), {
+        const worker = new Worker(new URL("workerHelpers-db20dbbc.js", import.meta.url), {
           type: 'module'
         });
         worker.postMessage(workerInit);
@@ -323,4 +323,4 @@ var squoosh_oxipng = /*#__PURE__*/Object.freeze({
 });
 
 export { init as default, initThreadPool, optimise, wbg_rayon_PoolBuilder, wbg_rayon_start_worker };
-//# sourceMappingURL=squoosh_oxipng-5de956c5.js.map
+//# sourceMappingURL=squoosh_oxipng-cef97fb8.js.map

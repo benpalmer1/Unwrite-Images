@@ -282,13 +282,13 @@ async function encode$4(data, options) {
 }
 
 async function initMT() {
-    const { default: init, initThreadPool, optimise, } = await import('./squoosh_oxipng-5de956c5.js');
+    const { default: init, initThreadPool, optimise, } = await import('./squoosh_oxipng-cef97fb8.js');
     await init();
     await initThreadPool(navigator.hardwareConcurrency);
     return optimise;
 }
 async function initST() {
-    const { default: init, optimise } = await import('./squoosh_oxipng-1e2dad16.js');
+    const { default: init, optimise } = await import('./squoosh_oxipng-fe639700.js');
     await init();
     return optimise;
 }
@@ -791,4 +791,4 @@ const exports = {
 };
 // 'as any' to work around the way our client code has insight into worker code
 expose(exports, self);
-//# sourceMappingURL=index-256358c4.js.map
+//# sourceMappingURL=index-de00e23e.js.map

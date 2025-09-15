@@ -116,4 +116,4 @@ async function init(input) {
 }
 
 export { init as default, optimise };
-//# sourceMappingURL=squoosh_oxipng-1e2dad16.js.map
+//# sourceMappingURL=squoosh_oxipng-fe639700.js.map

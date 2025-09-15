@@ -3494,7 +3494,7 @@ const methodNames = [
     "resize"
 ];
 
-var workerURL = "index-256358c4.js";
+var workerURL = "index-de00e23e.js";
 
 /** How long the worker should be idle before terminating. */
 const workerTimeout = 10000;

@@ -1,5 +1,7 @@
 # Unwrite Images - Image optimisation for Unwrite.co
 
+Use it live: Unwrite.co/images
+
 Unwrite Images is a fork of Squoosh that keeps everything client‑side and provides a simple mount API for embedding inside Unwrite (or any web app).
 
 It helps you optimise images for the web: reduce file size while keeping quality, preview results side‑by‑side, and save the version that looks best.

@@ -11110,3 +11110,4 @@ const exports = {
 };
 // 'as any' to work around the way our client code has insight into worker code
 expose(exports, self);
+//# sourceMappingURL=index-256358c4.js.map

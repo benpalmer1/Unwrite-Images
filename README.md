@@ -1,8 +1,16 @@
-# Unwrite Images
+# Unwrite Images - Image optimisation for Unwrite.co
 
 Unwrite Images is a fork of Squoosh that keeps everything client‑side and provides a simple mount API for embedding inside Unwrite (or any web app).
 
 It helps you optimise images for the web: reduce file size while keeping quality, preview results side‑by‑side, and save the version that looks best.
+
+## Original repo
+
+https://github.com/GoogleChromeLabs/squoosh
+
+Please contribute here instead of via this repo - unless your contribution is specific to Unwrite Images!
+
+For transparency, Unwrite Images is not associated with, or endorsed by, the Squoosh authors.
 
 ## Privacy
 

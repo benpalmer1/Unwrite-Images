@@ -360,3 +360,4 @@ export {
   wbg_rayon_PoolBuilder,
   wbg_rayon_start_worker,
 };
+//# sourceMappingURL=squoosh_oxipng-5de956c5.js.map

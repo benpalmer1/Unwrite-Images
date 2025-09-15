@@ -1,10 +1,10 @@
 {
   "name": "unwrite-images",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Unwrite Images: Squoosh-based image tools with a simple mount API.",
   "cdn": {
-    "jsdelivr": "https://cdn.jsdelivr.net/npm/unwrite-images@0.1.0/dist/",
-    "unpkg": "https://unpkg.com/unwrite-images@0.1.0/dist/"
+    "jsdelivr": "https://cdn.jsdelivr.net/npm/unwrite-images@0.1.1/dist/",
+    "unpkg": "https://unpkg.com/unwrite-images@0.1.1/dist/"
   },
   "files": {
     "main": "mount.js",

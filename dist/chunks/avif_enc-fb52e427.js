@@ -2135,3 +2135,4 @@ var Module = (function () {
 })();
 
 export { Module as default };
+//# sourceMappingURL=avif_enc-fb52e427.js.map

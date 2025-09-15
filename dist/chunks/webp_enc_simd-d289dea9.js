@@ -1800,3 +1800,4 @@ var Module = (function () {
 })();
 
 export { Module as default };
+//# sourceMappingURL=webp_enc_simd-d289dea9.js.map

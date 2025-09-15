@@ -91,3 +91,4 @@ self.onmessage = function (e) {
     throw ex;
   }
 };
+//# sourceMappingURL=avif_enc_mt.worker-4a316f39.js.map

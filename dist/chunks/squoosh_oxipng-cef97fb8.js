@@ -87,7 +87,7 @@ async function startWorkers(module, memory, builder) {
         // The only way to work around that is to have side effect code
         // in an entry point such as Worker file itself.
         const worker = new Worker(
-          new URL('workerHelpers-452e23c5.js', import.meta.url),
+          new URL('workerHelpers-db20dbbc.js', import.meta.url),
           {
             type: 'module',
           },
@@ -360,3 +360,4 @@ export {
   wbg_rayon_PoolBuilder,
   wbg_rayon_start_worker,
 };
+//# sourceMappingURL=squoosh_oxipng-cef97fb8.js.map

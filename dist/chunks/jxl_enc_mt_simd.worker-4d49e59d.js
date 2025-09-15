@@ -97,3 +97,4 @@ self.onmessage = function (e) {
     throw ex;
   }
 };
+//# sourceMappingURL=jxl_enc_mt_simd.worker-4d49e59d.js.map

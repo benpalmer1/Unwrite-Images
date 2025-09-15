@@ -152,7 +152,11 @@ export default async function ({ watch }) {
       emitFiles({ include: '**/*', root: path.join(__dirname, 'src', 'copy') }),
       nodeExternalPlugin(),
       featurePlugin(),
-      replace({ __PRERENDER__: true, __PRODUCTION__: isProduction, __EMBEDDED__: false }),
+      replace({
+        __PRERENDER__: true,
+        __PRODUCTION__: isProduction,
+        __EMBEDDED__: false,
+      }),
       initialCssPlugin(),
       runScript(dir + '/static-build/index.js'),
     ],
@@ -169,7 +173,8 @@ export default async function ({ watch }) {
       assetFileNames: 'assets/[name]-[hash][extname]',
       sourcemap: isProduction,
     },
-    preserveEntrySignatures: false,
+    // Preserve entry exports (e.g., default) for library consumers
+    preserveEntrySignatures: 'strict',
     plugins: [
       alias({
         entries: [
@@ -203,7 +208,11 @@ export default async function ({ watch }) {
       cssPlugin(),
       commonjs(),
       resolve(),
-      replace({ __PRERENDER__: false, __PRODUCTION__: isProduction, __EMBEDDED__: true }),
+      replace({
+        __PRERENDER__: false,
+        __PRODUCTION__: isProduction,
+        __EMBEDDED__: true,
+      }),
     ],
   };
 

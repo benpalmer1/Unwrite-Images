@@ -155,7 +155,8 @@ export default async function ({ watch }) {
       assetFileNames: 'assets/[name]-[hash][extname]',
       sourcemap: isProduction,
     },
-    preserveEntrySignatures: false,
+    // Preserve entry exports (e.g., default) for library consumers
+    preserveEntrySignatures: 'strict',
     plugins: [
       alias({
         entries: [

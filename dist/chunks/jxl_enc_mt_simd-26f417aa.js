@@ -4056,3 +4056,4 @@ var Module = (function () {
 })();
 
 export { Module as default };
+//# sourceMappingURL=jxl_enc_mt_simd-26f417aa.js.map

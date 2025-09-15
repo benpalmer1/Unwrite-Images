@@ -1796,3 +1796,4 @@ var Module = (function () {
 })();
 
 export { Module as default };
+//# sourceMappingURL=avif_dec-7490cdf3.js.map

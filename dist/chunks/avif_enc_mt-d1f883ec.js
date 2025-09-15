@@ -3513,3 +3513,4 @@ var Module = (function () {
 })();
 
 export { Module as default };
+//# sourceMappingURL=avif_enc_mt-d1f883ec.js.map

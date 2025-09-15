@@ -11,15 +11,17 @@ All processing happens locally in your browser using Web Workers and WebAssembly
 ## Installation
 
 ### Via NPM
+
 ```bash
 npm install unwrite-images
 ```
 
 ### Via CDN (jsDelivr)
+
 ```html
 <script type="module">
-  import mountUnwriteImages from 'https://cdn.jsdelivr.net/npm/unwrite-images@0.1.0/dist/mount.js';
-  
+  import mountUnwriteImages from 'https://cdn.jsdelivr.net/npm/unwrite-images@0.1.1/dist/mount.js';
+
   const container = document.getElementById('image-editor');
   const dispose = mountUnwriteImages(container);
 </script>
@@ -28,15 +30,16 @@ npm install unwrite-images
 ## Usage
 
 ### Mount API
+
 ```ts
 import mountUnwriteImages from 'unwrite-images';
 
 const el = document.getElementById('container')!;
-const dispose = mountUnwriteImages(el, { 
+const dispose = mountUnwriteImages(el, {
   theme: 'inherit',
   // Optional: Override CDN configuration
   cdnBase: 'https://cdn.jsdelivr.net/npm/unwrite-images',
-  version: '0.1.0'
+  version: '0.1.1',
 });
 
 // Clean up when done

@@ -55,13 +55,13 @@ const dispose = mountUnwriteImages(el, {
 dispose();
 ```
 
-The mount function adds the `unwrite-images` class to the root element on mount and removes it on dispose. Host apps can use this class as a CSS scoping hook.
+The app renders an internal container with the `unwrite-images` CSS class. All styles are scoped under this class, and host apps can use it as a CSS targeting hook (e.g. `.unwrite-images { ... }`).
 
 ### Options
 
 - `cdnBase`: Optional CDN base URL override
 - `version`: Optional version for CDN URLs
-- `onEditorStateChange`: Callback fired when the editor opens or closes
+- `onEditorStateChange`: Callback fired with `true` when the editor opens and `false` when it closes. The component automatically manages `body.style.overflow` (hidden while editing); use this callback for any additional host-side changes such as hiding surrounding UI
 
 ### Theming via CSS Variables
 
@@ -69,28 +69,39 @@ The app inherits colours from the host via CSS custom properties. Set these on o
 
 ```css
 #container {
-  --colour-text-primary: #111;
   --colour-background: #fff;
-  --colour-accent: #0ea5e9;
-  --colour-border: #e5e7eb;
+  --colour-text-primary: #111;
   --colour-text-secondary: #343a3e;
+  --colour-accent: #0ea5e9;
+  --colour-accent-hover: #0284c7;
+  --colour-highlight: #f0f9ff;
+  --colour-border: #e5e7eb;
+  --colour-background-alt: #f8fafc;
+  --colour-text-on-accent: #fff;
 }
 ```
 
 ### Breaking changes in 0.2.0
 
-- Removed the `theme` option (`'inherit' | 'unwrite-light' | 'unwrite-dark'`). These were non-functional; theming is handled entirely by CSS variable inheritance.
+- Removed the `theme` option (`'inherit' | 'unwrite-light' | 'unwrite-dark'`). Theming is handled entirely by CSS variable inheritance.
 - Removed the `MountTheme` type export.
-- The mount function now always adds the `unwrite-images` class to the root element.
+
+### Supported Formats
+
+Encoders: AVIF, JPEG XL, MozJPEG, OxiPNG, QOI, WebP, WebP2, Browser GIF, Browser JPEG, Browser PNG
+
+Processors: Resize, Colour quantisation, Rotation
+
+All codecs run client-side via WebAssembly.
 
 ## CDN Hosting
 
 When installed via npm and published, Unwrite Images is automatically available via jsDelivr CDN:
 
 - Main bundle: `https://cdn.jsdelivr.net/npm/unwrite-images@VERSION/dist/mount.js`
-- WASM codecs: `https://cdn.jsdelivr.net/npm/unwrite-images@VERSION/dist/chunks/codecs/`
+- WASM codecs & assets: `https://cdn.jsdelivr.net/npm/unwrite-images@VERSION/dist/assets/`
 
-This significantly reduces the bundle size of your main application by loading image processing codecs on-demand from the CDN.
+The initial mount script is ~40KB. WASM codecs (~21MB total) are loaded on-demand as needed, so your application only pays for what the user actually uses.
 
 ## Developing
 

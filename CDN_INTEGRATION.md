@@ -2,7 +2,7 @@
 
 ## Overview
 
-Unwrite Images can be hosted and served via jsDelivr CDN to minimize bundle size in your main application. The total package is ~27MB, but when served via CDN, your application only needs to load the small mount script (~22KB), with codecs loaded on-demand.
+Unwrite Images can be hosted and served via jsDelivr CDN to minimize bundle size in your main application. The total package is ~21MB, but when served via CDN, your application only needs to load the mount script (~40KB), with WASM codecs loaded on-demand as needed.
 
 ## How jsDelivr Works
 
@@ -121,9 +121,9 @@ export default function ImagesPage() {
 
 | Method            | Initial Load | Total Size        | Notes                   |
 | ----------------- | ------------ | ----------------- | ----------------------- |
-| Direct CDN Import | ~22KB        | ~27MB (on-demand) | Smallest initial bundle |
-| NPM Install       | ~22KB        | ~27MB (on-demand) | Type safety included    |
-| Self-hosted       | ~27MB        | ~27MB             | Everything bundled      |
+| Direct CDN Import | ~40KB        | ~21MB (on-demand) | Smallest initial bundle |
+| NPM Install       | ~40KB        | ~21MB (on-demand) | Type safety included    |
+| Self-hosted       | ~21MB        | ~21MB             | Everything bundled      |
 
 ## Versioning Strategy
 

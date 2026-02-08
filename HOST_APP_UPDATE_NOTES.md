@@ -2,9 +2,9 @@
 
 ## Breaking changes from 0.1.x
 
-- The `theme` option has been removed from `mountUnwriteImages()`. Remove any `theme: 'inherit'`, `theme: 'unwrite-light'`, or `theme: 'unwrite-dark'` from your mount call.
+- The `theme` option has been removed from `mountUnwriteImages()`. Remove any `theme: 'inherit'`, `theme: 'unwrite-light'`, or `theme: 'unwrite-dark'` from your mount call. Theming is now handled entirely via CSS variable inheritance (see README).
 - The `MountTheme` type no longer exists. Remove any imports of it.
-- The mount function now always adds the `unwrite-images` CSS class to the root element (and removes it on dispose).
+- The app renders an internal container with the `unwrite-images` CSS class. All styles are scoped under this class. Host apps can target it for overrides (e.g. `.unwrite-images { ... }`).
 
 ## Upgrade steps
 
@@ -21,7 +21,7 @@
 
    - Change the hard-coded `version` constant to `'0.2.0'` so the CDN script tag loads the matching build.
    - Remove the `theme` property from the `mountUnwriteImages` options object.
-   - Handle the `onEditorStateChange` callback to hide marketing sections and disable page scrollbars while the editor is active.
+   - Handle the `onEditorStateChange` callback to hide marketing sections while the editor is active. Note: `body.style.overflow` is already managed automatically (set to `hidden` while editing, restored on close) — the callback is for any additional host-side changes.
 
 4. **Manual regression check**
 

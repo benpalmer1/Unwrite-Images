@@ -48,7 +48,7 @@ range-input::before {
 }
 
 range-input:focus-within .thumb {
-  outline: white solid 2px;
+  outline: var(--ui-accent) solid 2px;
 }
 
 .thumb-wrapper {
@@ -74,7 +74,7 @@ range-input:focus-within .thumb {
   transform-origin: 50% 90%;
   opacity: 0.0001;
   transform: scale(0.2);
-  color: #fff;
+  color: var(--colour-text-on-accent);
   font: inherit;
   font-size: calc(100% - var(--value-width, 3) / 5 * 0.2em);
   text-overflow: clip;

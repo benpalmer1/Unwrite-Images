@@ -2,11 +2,11 @@ two-up {
   display: grid;
   position: relative;
   --split-point: 0;
-  --track-color: rgb(0 0 0 / 0.6);
-  --thumb-background: var(--black);
-  --thumb-color: var(--accent-color);
-  --thumb-size: 62px;
-  --bar-size: 9px;
+  --track-color: rgb(255 255 255 / 0.35);
+  --thumb-background: var(--ui-bg);
+  --thumb-color: var(--ui-accent);
+  --thumb-size: 52px;
+  --bar-size: 3px;
   --bar-touch-size: 30px;
 }
 
@@ -49,18 +49,19 @@ two-up[legacy-clip-compat] > :not(.two-up-handle) {
   width: var(--thumb-size);
   height: var(--thumb-size);
   background: var(--thumb-background);
-  border-radius: var(--thumb-size);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   color: var(--thumb-color);
   box-sizing: border-box;
   padding: 0 calc(var(--thumb-size) * 0.24);
 }
 
 .arrow-left {
-  fill: var(--pink);
+  fill: var(--ui-accent);
 }
 
 .arrow-right {
-  fill: var(--blue);
+  fill: var(--ui-accent);
 }
 
 two-up[orientation='vertical'] .two-up-handle {

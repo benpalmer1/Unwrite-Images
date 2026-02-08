@@ -985,15 +985,14 @@ export default class Compress extends Component<Props, State> {
           onPreprocessorChange={this.onPreprocessorChange}
         />
         <button class={style.back} onClick={onBack}>
-          <svg viewBox="0 0 61 53.3">
+          <svg viewBox="0 0 36 36">
             <title>Back</title>
-            <path
-              class={style.backBlob}
-              d="M0 25.6c-.5-7.1 4.1-14.5 10-19.1S23.4.1 32.2 0c8.8 0 19 1.6 24.4 8s5.6 17.8 1.7 27a29.7 29.7 0 01-20.5 18c-8.4 1.5-17.3-2.6-24.5-8S.5 32.6.1 25.6z"
-            />
+            <rect class={style.backBlob} width="36" height="36" rx="8" />
             <path
               class={style.backX}
-              d="M41.6 17.1l-2-2.1-8.3 8.2-8.2-8.2-2 2 8.2 8.3-8.3 8.2 2.1 2 8.2-8.1 8.3 8.2 2-2-8.2-8.3z"
+              d="M12 12l12 12M24 12l-12 12"
+              stroke-width="2.5"
+              stroke-linecap="round"
             />
           </svg>
         </button>

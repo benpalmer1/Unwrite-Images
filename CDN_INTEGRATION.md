@@ -38,8 +38,8 @@ npm publish --tag beta
 
 After publishing, the package is immediately available via:
 
-- jsDelivr: `https://cdn.jsdelivr.net/npm/unwrite-images@0.1.1/dist/mount.js`
-- unpkg: `https://unpkg.com/unwrite-images@0.1.1/dist/mount.js`
+- jsDelivr: `https://cdn.jsdelivr.net/npm/unwrite-images@0.2.0/dist/mount.js`
+- unpkg: `https://unpkg.com/unwrite-images@0.2.0/dist/mount.js`
 
 ## Integration in Unwrite Main App
 
@@ -54,7 +54,7 @@ import { useEffect, useRef } from 'react';
 // Dynamically import from CDN
 async function loadUnwriteImages() {
   const module = await import(
-    'https://cdn.jsdelivr.net/npm/unwrite-images@0.1.1/dist/mount.js'
+    'https://cdn.jsdelivr.net/npm/unwrite-images@0.2.0/dist/mount.js'
   );
   return module.default;
 }
@@ -68,9 +68,7 @@ export default function ImagesPage() {
 
     loadUnwriteImages().then((mountUnwriteImages) => {
       if (mounted && containerRef.current) {
-        disposeRef.current = mountUnwriteImages(containerRef.current, {
-          theme: 'inherit',
-        });
+        disposeRef.current = mountUnwriteImages(containerRef.current);
       }
     });
 
@@ -105,9 +103,8 @@ export default function ImagesPage() {
     if (containerRef.current) {
       // The package automatically loads WASM from CDN
       disposeRef.current = mountUnwriteImages(containerRef.current, {
-        theme: 'inherit',
         // Optional: specify CDN version
-        version: '0.1.1',
+        version: '0.2.0',
       });
     }
 
@@ -134,7 +131,7 @@ export default function ImagesPage() {
 
 ```javascript
 // Locked to specific version (recommended for production)
-import mountUnwriteImages from 'https://cdn.jsdelivr.net/npm/unwrite-images@0.1.1/dist/mount.js';
+import mountUnwriteImages from 'https://cdn.jsdelivr.net/npm/unwrite-images@0.2.0/dist/mount.js';
 ```
 
 ### Using Version Ranges
@@ -150,9 +147,8 @@ If you need to use a different CDN or self-host:
 
 ```javascript
 const dispose = mountUnwriteImages(container, {
-  theme: 'inherit',
   cdnBase: 'https://your-cdn.com/unwrite-images',
-  version: '0.1.1',
+  version: '0.2.0',
 });
 ```
 
@@ -163,7 +159,7 @@ To improve initial load time, preload the main script:
 ```html
 <link
   rel="modulepreload"
-  href="https://cdn.jsdelivr.net/npm/unwrite-images@0.1.1/dist/mount.js"
+  href="https://cdn.jsdelivr.net/npm/unwrite-images@0.2.0/dist/mount.js"
 />
 ```
 
@@ -209,5 +205,5 @@ window.UNWRITE_IMAGES_CDN = 'http://localhost:8080';
 
 1. Push code to GitHub repository
 2. Publish to npm: `npm publish`
-3. Test CDN URL: `https://cdn.jsdelivr.net/npm/unwrite-images@0.1.1/dist/mount.js`
+3. Test CDN URL: `https://cdn.jsdelivr.net/npm/unwrite-images@0.2.0/dist/mount.js`
 4. Integrate into Unwrite main app using Option 1 or 2 above

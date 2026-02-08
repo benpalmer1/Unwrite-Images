@@ -32,7 +32,7 @@ loadEnvFiles();
 
 // Default the port if not provided
 async function findFreePort(startPort) {
-  let port = Number(startPort) || 5000;
+  let port = Number(startPort) || 5847;
   for (let i = 0; i < 50; i++) {
     // eslint-disable-next-line no-await-in-loop
     const free = await new Promise((resolve) => {
@@ -47,12 +47,12 @@ async function findFreePort(startPort) {
     if (free) return String(port);
     port += 1;
   }
-  return String(startPort || 5000);
+  return String(startPort || 5847);
 }
 
 if (!process.env.DEV_PORT) {
-  // Pick a free port starting at 5000
-  const p = await findFreePort(5000);
+  // Pick a free port starting at 5847 (random port to avoid conflicts with other common dev servers)
+  const p = await findFreePort(5847);
   process.env.DEV_PORT = p;
 }
 
@@ -99,7 +99,7 @@ const bin = path.join(
   process.platform === 'win32' ? 'serve.cmd' : 'serve',
 );
 
-const port = process.env.DEV_PORT || '5000';
+const port = process.env.DEV_PORT || '5847';
 const args = ['--listen', String(port), '--config', 'serve.json', '--cors', buildRoot];
 
 spawnProc(bin, args);

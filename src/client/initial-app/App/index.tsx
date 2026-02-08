@@ -170,8 +170,8 @@ export default class App extends Component<Props, State> {
   ) {
     const showSpinner = awaitingShareTarget || (isEditorOpen && !Compress);
     const containerClass = isEditorOpen
-      ? `${style.app} ${style.appFullScreen}`
-      : style.app;
+      ? `${style.app} ${style.appFullScreen} unwrite-images`
+      : `${style.app} unwrite-images`;
 
     return (
       <div class={containerClass}>

@@ -1,6 +1,4 @@
-export type MountTheme = 'inherit' | 'unwrite-light' | 'unwrite-dark';
 export interface MountOptions {
-  theme?: MountTheme;
   cdnBase?: string;
   version?: string;
   onEditorStateChange?: (isOpen: boolean) => void;

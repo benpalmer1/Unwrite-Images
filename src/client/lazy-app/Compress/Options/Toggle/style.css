@@ -5,14 +5,14 @@
 
 .track {
   --thumb-size: 14px;
-  background: var(--black);
+  background: var(--ui-border);
   border-radius: 1000px;
   width: 24px;
   padding: 3px calc(var(--thumb-size) / 2 + 3px);
 }
 
 .checkbox:focus-within .track {
-  outline: white solid 2px;
+  outline: var(--ui-accent) solid 2px;
 }
 
 .thumb {

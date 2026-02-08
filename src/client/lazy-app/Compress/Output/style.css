@@ -8,7 +8,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: #000;
+    background: var(--ui-viewport-bg);
     opacity: 0.8;
     transition: opacity 500ms ease;
   }
@@ -47,7 +47,7 @@
   contain: content;
   grid-area: header;
   align-self: center;
-  padding: 9px 66px;
+  padding: 6px 50px;
   position: relative;
   gap: 6px;
 
@@ -58,7 +58,7 @@
   }
 
   @media (min-width: 860px) {
-    padding: 9px;
+    padding: 6px;
     flex-wrap: wrap-reverse;
     grid-area: viewportOpts;
     align-self: end;
@@ -76,34 +76,34 @@
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  background-color: rgba(29, 29, 29, 0.92);
-  border: 1px solid rgba(0, 0, 0, 0.67);
+  background-color: var(--ui-controls-bg);
+  border: 1px solid var(--ui-controls-border);
   border-width: 1px 0 1px 1px;
   line-height: 1.1;
   white-space: nowrap;
-  height: 39px;
-  padding: 0 8px;
-  font-size: 1.2rem;
+  height: 30px;
+  padding: 0 6px;
+  font-size: 0.85rem;
   cursor: pointer;
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px #fff;
+    box-shadow: 0 0 0 2px var(--ui-controls-text);
     outline: none;
     z-index: 1;
   }
 }
 
 .button {
-  color: #fff;
+  color: var(--ui-controls-text);
   margin: 0;
 
   &:hover {
-    background: rgba(50, 50, 50, 0.92);
+    background: var(--ui-controls-bg-hover);
   }
 
   &.active {
-    background: rgba(72, 72, 72, 0.92);
-    color: #fff;
+    background: var(--ui-controls-bg-active);
+    color: var(--ui-controls-text);
   }
 }
 
@@ -126,31 +126,32 @@
   justify-content: center;
 
   &:focus {
-    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2), 0 0 0 2px #fff;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2),
+      0 0 0 2px var(--ui-controls-text);
   }
 }
 span.zoom {
-  color: #939393;
+  color: var(--ui-controls-text-dim);
   font-size: 0.8rem;
   line-height: 1.2;
   font-weight: 100;
 }
 input.zoom {
-  font-size: 1.2rem;
+  font-size: 0.85rem;
   letter-spacing: 0.05rem;
   font-weight: 700;
   text-indent: 3px;
-  color: #fff;
+  color: var(--ui-controls-text);
 }
 
 .zoom-value {
   margin: 0 3px 0 0;
   padding: 0 2px;
-  font-size: 1.2rem;
+  font-size: 0.85rem;
   letter-spacing: 0.05rem;
   font-weight: 700;
-  color: #fff;
-  border-bottom: 1px dashed #999;
+  color: var(--ui-controls-text);
+  border-bottom: 1px dashed var(--ui-controls-text-dim);
 }
 
 .buttons-no-wrap {

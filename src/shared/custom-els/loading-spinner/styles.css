@@ -63,7 +63,7 @@
 
 loading-spinner {
   --size: 28px;
-  --color: #4285f4;
+  --color: var(--ui-accent, #2e5c85);
   --stroke-width: 3px;
   --delay: 300ms;
 

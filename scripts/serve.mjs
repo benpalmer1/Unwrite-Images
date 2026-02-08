@@ -29,7 +29,7 @@ function loadEnvFiles() {
 
 loadEnvFiles();
 
-const port = process.env.DEV_PORT || '5000';
+const port = process.env.DEV_PORT || '5847';
 
 const bin = path.join(
   process.cwd(),

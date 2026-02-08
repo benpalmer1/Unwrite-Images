@@ -1,5 +1,5 @@
 .options-scroller {
-  --horizontal-padding: 15px;
+  --horizontal-padding: 10px;
   border-radius: var(--scroller-radius);
   overflow: hidden;
 
@@ -15,10 +15,10 @@
   background-color: var(--main-theme-color);
   color: var(--header-text-color);
   margin: 0;
-  padding: 10px var(--horizontal-padding);
+  padding: 6px var(--horizontal-padding);
   font-weight: bold;
-  font-size: 1.4rem;
-  border-bottom: 1px solid var(--off-black);
+  font-size: 1rem;
+  border-bottom: 1px solid var(--ui-border);
   transition: all 300ms ease-in-out;
   transition-property: background-color, color;
 
@@ -28,16 +28,16 @@
 }
 
 .original-image .options-title {
-  background-color: var(--black);
-  color: var(--white);
+  background-color: var(--ui-border);
+  color: var(--ui-fg);
 }
 
 .option-text-first {
   display: grid;
   align-items: center;
-  grid-template-columns: 87px 1fr;
-  gap: 0.7em;
-  padding: 10px var(--horizontal-padding);
+  grid-template-columns: 70px 1fr;
+  gap: 0.5em;
+  padding: 6px var(--horizontal-padding);
 }
 
 .option-toggle {
@@ -45,16 +45,16 @@
   display: grid;
   align-items: center;
   grid-template-columns: 1fr auto;
-  gap: 0.7em;
-  padding: 10px var(--horizontal-padding);
+  gap: 0.5em;
+  padding: 6px var(--horizontal-padding);
 }
 
 .option-reveal {
   composes: option-toggle;
   grid-template-columns: auto 1fr;
-  gap: 1em;
+  gap: 0.5em;
 
-  border-top: 1px solid #fff4;
+  border-top: 1px solid var(--ui-border);
 
   transition-property: background-color;
   transition-duration: 250ms;
@@ -62,32 +62,32 @@
 
 .option-reveal:focus-within,
 .option-reveal:hover {
-  background-color: #fff2;
+  background-color: var(--colour-highlight);
 }
 
 .option-one-cell {
   display: grid;
   grid-template-columns: 1fr;
-  padding: 10px var(--horizontal-padding);
+  padding: 6px var(--horizontal-padding);
 }
 
 .section-enabler {
   composes: option-toggle;
-  background: var(--dark-gray);
-  padding: 15px var(--horizontal-padding);
-  border-bottom: 1px solid var(--off-black);
+  background: var(--colour-background-alt);
+  padding: 8px var(--horizontal-padding);
+  border-bottom: 1px solid var(--ui-border);
 }
 
 .options-section {
-  background: var(--off-black);
+  background: var(--ui-panel-bg);
 }
 
 .text-field {
-  background-color: var(--black);
-  color: var(--white);
+  background-color: var(--ui-input-bg);
+  color: var(--ui-input-text);
   font: inherit;
-  border: none;
-  padding: 6px 6px 6px 10px;
+  border: 1px solid var(--ui-input-border);
+  padding: 4px 6px 4px 8px;
   width: 100%;
   box-sizing: border-box;
   border-radius: 4px;
@@ -104,7 +104,7 @@
 .title-button {
   composes: unbutton from global;
   svg {
-    --size: 20px;
+    --size: 16px;
     display: block;
     width: var(--size);
     height: var(--size);

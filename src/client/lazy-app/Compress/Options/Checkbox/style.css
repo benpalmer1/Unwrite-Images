@@ -42,5 +42,5 @@
 }
 
 .disabled {
-  fill: var(--dark-gray);
+  fill: var(--ui-border);
 }

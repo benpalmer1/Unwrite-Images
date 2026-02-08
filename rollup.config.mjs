@@ -171,7 +171,7 @@ export default async function ({ watch }) {
           },
         ],
       }),
-      OMT({ loader: await omtLoaderPromise }),
+      OMT({ loader: await omtLoaderPromise, silenceESMWorkerWarning: true }),
       importMetaAssets(),
       tsPluginInstance,
       resolveDirsPlugin([

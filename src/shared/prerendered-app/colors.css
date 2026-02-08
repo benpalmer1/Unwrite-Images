@@ -1,38 +1,51 @@
-html {
-  /* Theme bridge to Unwrite tokens */
-  --ui-fg: var(--colour-text-primary, #111);
-  --ui-bg: var(--colour-background, #fff);
-  --ui-accent: var(--colour-accent, #0ea5e9);
-  --ui-border: var(--colour-border, #e5e7eb);
+:global(.unwrite-images) {
+  /* Host-overridable brand tokens (Unwrite defaults) */
+  --colour-background: #fbfbf6;
+  --colour-text-primary: #1e1e24;
+  --colour-text-secondary: #6b6b78;
+  --colour-accent: #2e5c85;
+  --colour-accent-hover: #245073;
+  --colour-highlight: #f2e9d8;
+  --colour-border: #e8e8e5;
+  --colour-background-alt: #f7f7f2;
+  --colour-text-on-accent: #fff;
 
-  /* Map existing palette to theme variables */
+  /* Core UI tokens */
+  --ui-fg: var(--colour-text-primary);
+  --ui-bg: var(--colour-background);
+  --ui-accent: var(--colour-accent);
+  --ui-border: var(--colour-border);
+
+  /* Panel tokens (light panels) */
+  --ui-panel-bg: var(--colour-background-alt);
+  --ui-panel-text: var(--ui-fg);
+  --ui-input-bg: var(--ui-bg);
+  --ui-input-text: var(--ui-fg);
+  --ui-input-border: var(--ui-border);
+
+  /* Viewport / image area tokens (dark) */
+  --ui-viewport-bg: #000;
+  --ui-controls-bg: rgba(29, 29, 29, 0.92);
+  --ui-controls-bg-hover: rgba(50, 50, 50, 0.92);
+  --ui-controls-bg-active: rgba(72, 72, 72, 0.92);
+  --ui-controls-text: #fff;
+  --ui-controls-text-dim: #939393;
+  --ui-controls-border: rgba(0, 0, 0, 0.67);
+
+  /* Legacy Squoosh palette — bridged to brand tokens */
   --pink: var(--ui-accent);
-  --hot-pink: var(--ui-accent);
-  --white: var(--ui-bg);
-  --black: #000;
-  --off-black: var(--ui-fg);
+  --hot-pink: var(--colour-accent-hover);
   --blue: var(--ui-accent);
   --dim-blue: var(--ui-accent);
-  --deep-blue: var(--ui-accent);
+  --deep-blue: var(--colour-accent-hover);
   --light-blue: var(--ui-accent);
+  --white: var(--ui-bg);
+  --black: var(--ui-fg);
+  --off-black: var(--ui-fg);
+  --dark-text: var(--ui-fg);
+  --dim-text: var(--colour-text-secondary);
+  --dark-gray: var(--colour-text-secondary);
   --less-light-gray: var(--ui-border);
   --medium-light-gray: var(--ui-border);
   --light-gray: var(--ui-border);
-  --dark-gray: #333;
-  --dim-text: var(--colour-text-secondary, #343a3e);
-  --dark-text: var(--ui-fg);
-
-  /* Old stuff: */
-  --button-fg: var(--ui-accent, rgb(95, 180, 228));
-}
-
-@media (dynamic-range: high) {
-  @supports (color: oklch(0% 0 0)) {
-    html {
-      --pink: oklch(75% 0.3 3);
-      --hot-pink: oklch(65% 0.3 3);
-      --blue: oklch(75% 0.3 248);
-      --deep-blue: oklch(65% 0.3 248);
-    }
-  }
 }

@@ -30,7 +30,7 @@ npm install unwrite-images
 
 ```html
 <script type="module">
-  import mountUnwriteImages from 'https://cdn.jsdelivr.net/npm/unwrite-images@0.1.1/dist/mount.js';
+  import mountUnwriteImages from 'https://cdn.jsdelivr.net/npm/unwrite-images@0.2.0/dist/mount.js';
 
   const container = document.getElementById('image-editor');
   const dispose = mountUnwriteImages(container);
@@ -46,21 +46,42 @@ import mountUnwriteImages from 'unwrite-images';
 
 const el = document.getElementById('container')!;
 const dispose = mountUnwriteImages(el, {
-  theme: 'inherit',
   // Optional: Override CDN configuration
   cdnBase: 'https://cdn.jsdelivr.net/npm/unwrite-images',
-  version: '0.1.1',
+  version: '0.2.0',
 });
 
 // Clean up when done
 dispose();
 ```
 
+The mount function adds the `unwrite-images` class to the root element on mount and removes it on dispose. Host apps can use this class as a CSS scoping hook.
+
 ### Options
 
-- `theme`: 'inherit' | 'unwrite-light' | 'unwrite-dark' (default: 'inherit')
 - `cdnBase`: Optional CDN base URL override
 - `version`: Optional version for CDN URLs
+- `onEditorStateChange`: Callback fired when the editor opens or closes
+
+### Theming via CSS Variables
+
+The app inherits colours from the host via CSS custom properties. Set these on or above the container element to customise the palette:
+
+```css
+#container {
+  --colour-text-primary: #111;
+  --colour-background: #fff;
+  --colour-accent: #0ea5e9;
+  --colour-border: #e5e7eb;
+  --colour-text-secondary: #343a3e;
+}
+```
+
+### Breaking changes in 0.2.0
+
+- Removed the `theme` option (`'inherit' | 'unwrite-light' | 'unwrite-dark'`). These were non-functional; theming is handled entirely by CSS variable inheritance.
+- Removed the `MountTheme` type export.
+- The mount function now always adds the `unwrite-images` class to the root element.
 
 ## CDN Hosting
 

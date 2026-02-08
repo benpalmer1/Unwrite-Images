@@ -109,7 +109,8 @@ export default class Intro extends Component<Props, State> {
     this.installingViaButton = false;
   };
 
-  private onPasteClick = async () => {
+  private onPasteClick = async (event: Event) => {
+    event.stopPropagation();
     if (!supportsClipboardAPI) return;
 
     let clipboardItems: ClipboardItem[];
@@ -157,6 +158,7 @@ export default class Intro extends Component<Props, State> {
           )}
 
           <div class={style.loadImg}>
+            <h2 class={style.sectionHeading}>Upload Your Image</h2>
             {showBlobSVG && (
               <svg
                 class={style.blobSvg}
@@ -185,20 +187,26 @@ export default class Intro extends Component<Props, State> {
             <div
               class={style.loadImgContent}
               style={{ visibility: __PRERENDER__ ? 'hidden' : '' }}
+              onClick={this.onOpenClick}
             >
-              <button class={style.loadBtn} onClick={this.onOpenClick}>
+              <div class={style.loadBtn}>
                 <svg viewBox="0 0 24 24" class={style.loadIcon}>
-                  <path d="M19 7v3h-2V7h-3V5h3V2h2v3h3v2h-3zm-3 4V8h-3V5H5a2 2 0 00-2 2v12c0 1.1.9 2 2 2h12a2 2 0 002-2v-8h-3zM5 19l3-4 2 3 3-4 4 5H5z" />
+                  <path d="M5 20h14v-2H5v2zm0-10h4v6h6v-6h4l-7-7-7 7z" />
                 </svg>
-              </button>
+              </div>
+              <p class={style.loadHeading}>
+                Drop your image here or click to browse
+              </p>
               <div class={style.loadActions}>
-                <span class={style.dropText}>Drop an image or </span>
                 {supportsClipboardAPI ? (
-                  <button class={style.pasteBtn} onClick={this.onPasteClick}>
-                    paste from clipboard
-                  </button>
+                  <span>
+                    or{' '}
+                    <button class={style.pasteBtn} onClick={this.onPasteClick}>
+                      paste from clipboard
+                    </button>
+                  </span>
                 ) : (
-                  'paste from clipboard'
+                  'or paste from clipboard'
                 )}
               </div>
             </div>

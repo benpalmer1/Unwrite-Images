@@ -16,11 +16,11 @@ snack-bar {
   bottom: 24px;
   width: 344px;
   margin-left: -172px;
-  background: #2a2a2a;
+  background: var(--ui-fg, #1e1e24);
   border-radius: 2px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   transform-origin: center;
-  color: #eee;
+  color: var(--ui-bg, #fbfbf6);
   z-index: 100;
   cursor: default;
   will-change: transform;
@@ -68,7 +68,7 @@ snack-bar {
   background: none;
   border: none;
   border-radius: 3px;
-  color: lightgreen;
+  color: var(--ui-accent, #2e5c85);
   font-weight: inherit;
   letter-spacing: 0.05em;
   font-size: 100%;

@@ -6,7 +6,7 @@
 }
 
 .label-text {
-  color: #fff; /* TEMP */
+  color: var(--ui-panel-text);
 }
 
 .range-wc-container {
@@ -40,8 +40,8 @@
   left: 5px;
 
   &:focus {
-    background: #fff;
-    color: #000;
+    background: var(--colour-background-alt);
+    color: var(--ui-fg);
   }
 
   /* Remove the number controls */

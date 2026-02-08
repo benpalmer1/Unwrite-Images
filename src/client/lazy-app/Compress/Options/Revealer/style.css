@@ -6,7 +6,7 @@
 .arrow {
   width: 10px;
   height: 10px;
-  fill: var(--white);
+  fill: var(--ui-fg);
   transition: transform 200ms ease;
   transform: rotate(-90deg);
 

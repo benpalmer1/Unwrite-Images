@@ -89,10 +89,7 @@ import mountUnwriteImages from 'https://cdn.jsdelivr.net/npm/${pkg.name}@${pkg.v
 // import mountUnwriteImages from '${pkg.name}';
 
 const container = document.getElementById('image-editor');
-const dispose = mountUnwriteImages(container, {
-  theme: 'inherit',
-  // CDN is automatically configured when loading from jsDelivr
-});
+const dispose = mountUnwriteImages(container);
 `);
 }
 

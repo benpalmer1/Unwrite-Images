@@ -15,8 +15,6 @@ import { h, FunctionalComponent } from 'preact';
 import baseCss from 'css:./base.css';
 import initialCss from 'initial-css:';
 import { allSrc } from 'client-bundle:client/initial-app';
-import favicon from 'url:static-build/assets/favicon.ico';
-import ogImage from 'url:static-build/assets/icon-large-maskable.png';
 import { escapeStyleScriptContent, siteOrigin } from 'static-build/utils';
 import Intro from 'shared/prerendered-app/Intro';
 import snackbarCss from 'css:../../../shared/custom-els/snack-bar/styles.css';
@@ -35,18 +33,6 @@ const Index: FunctionalComponent<Props> = () => (
       <meta name="twitter:card" content="summary" />
       <meta property="og:title" content="Unwrite Images" />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content={`${siteOrigin}${ogImage}`} />
-      <meta
-        property="og:image:secure_url"
-        content={`${siteOrigin}${ogImage}`}
-      />
-      <meta property="og:image:type" content="image/png" />
-      <meta property="og:image:width" content="500" />
-      <meta property="og:image:height" content="500" />
-      <meta
-        property="og:image:alt"
-        content="A cartoon of a hand squeezing an image file on a dark background."
-      />
       <meta
         name="og:description"
         content="Optimise your images for the web. Shrink file sizes, compare before‑and‑after, and save the best quality."
@@ -57,8 +43,6 @@ const Index: FunctionalComponent<Props> = () => (
       />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
-      <link rel="shortcut icon" href={favicon} />
-      <link rel="apple-touch-icon" href={ogImage} />
       <meta name="theme-color" content="#0ea5e9" />
       <link rel="manifest" href="/manifest.json" />
       <link rel="canonical" href={siteOrigin} />

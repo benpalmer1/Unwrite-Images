@@ -1,12 +1,13 @@
 import { h, render } from 'preact';
 import App from 'client/initial-app/App';
 
-export type MountTheme = 'inherit' | 'light' | 'dark';
+export type MountTheme = 'inherit' | 'unwrite-light' | 'unwrite-dark';
 
 export interface MountOptions {
   theme?: MountTheme;
   cdnBase?: string; // Optional CDN base URL override
   version?: string; // Optional version override for CDN
+  onEditorStateChange?: (isOpen: boolean) => void;
 }
 
 // Mount the Unwrite Images app into a provided root element and return an unmount disposer.
@@ -15,18 +16,18 @@ export function mountUnwriteImages(
   options: MountOptions = {},
 ): () => void {
   // Apply optional theme override
-  const { theme = 'inherit', cdnBase, version } = options;
+  const { theme = 'inherit', cdnBase, version, onEditorStateChange } = options;
   if (theme && theme !== 'inherit') {
     root.setAttribute('data-unwrite-images-theme', theme);
   }
-  
+
   // Set CDN configuration if provided
   if (typeof window !== 'undefined') {
     if (cdnBase) window.UNWRITE_IMAGES_CDN = cdnBase;
     if (version) window.UNWRITE_IMAGES_VERSION = version;
   }
 
-  render(<App />, root);
+  render(<App onEditorStateChange={onEditorStateChange} />, root);
   // Return disposer to unmount
   return () => {
     // Preact unmount via rendering null into the same root

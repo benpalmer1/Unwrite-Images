@@ -12,7 +12,9 @@
     "baseUrl": "./",
     "rootDir": "./",
     "outDir": ".tmp/ts",
+    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
+    "typeRoots": ["./node_modules/@types"],
     "paths": {
       "static-build/*": ["src/static-build/*"],
       "client/*": ["src/client/*"],

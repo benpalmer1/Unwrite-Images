@@ -9,30 +9,61 @@ declare global {
     UNWRITE_IMAGES_CDN?: string;
     UNWRITE_IMAGES_VERSION?: string;
   }
+  interface WorkerGlobalScope {
+    UNWRITE_IMAGES_CDN?: string;
+    UNWRITE_IMAGES_VERSION?: string;
+  }
 }
 
-// Allow override via window globals for testing/development
+type UnwriteGlobalScope = typeof globalThis & {
+  UNWRITE_IMAGES_CDN?: string;
+  UNWRITE_IMAGES_VERSION?: string;
+};
+
+const globalScope = globalThis as UnwriteGlobalScope;
+
+// Allow override via globals for testing/development
 const CDN_BASE =
-  typeof window !== 'undefined' && window.UNWRITE_IMAGES_CDN
-    ? window.UNWRITE_IMAGES_CDN
+  typeof globalScope.UNWRITE_IMAGES_CDN === 'string'
+    ? globalScope.UNWRITE_IMAGES_CDN
     : 'https://cdn.jsdelivr.net/npm/unwrite-images';
 
 const VERSION =
-  typeof window !== 'undefined' && window.UNWRITE_IMAGES_VERSION
-    ? window.UNWRITE_IMAGES_VERSION
-    : '0.1.1'; // This should match package.json version
+  typeof globalScope.UNWRITE_IMAGES_VERSION === 'string'
+    ? globalScope.UNWRITE_IMAGES_VERSION
+    : '0.1.4'; // This should match package.json version
 
 export function getCDNUrl(path: string): string {
   // Remove leading slash if present
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
 
-  // In development or if CDN is disabled, use relative paths
   if (CDN_BASE === 'local') {
     return `/${cleanPath}`;
   }
 
-  // Construct jsDelivr URL
-  return `${CDN_BASE}@${VERSION}/dist/${cleanPath}`;
+  const normalizedBase = CDN_BASE.replace(/\/+$/, '');
+  const isKnownVersionedCdn = /cdn\.jsdelivr\.net|unpkg\.com/.test(
+    normalizedBase,
+  );
+
+  if (isKnownVersionedCdn) {
+    if (normalizedBase.includes('@')) {
+      const baseWithDist = normalizedBase.endsWith('/dist')
+        ? normalizedBase
+        : `${normalizedBase}/dist`;
+      return `${baseWithDist}/${cleanPath}`.replace(/([^:])\/{2,}/g, '$1/');
+    }
+    return `${normalizedBase}@${VERSION}/dist/${cleanPath}`;
+  }
+
+  if (
+    normalizedBase.startsWith('http://') ||
+    normalizedBase.startsWith('https://')
+  ) {
+    return `${normalizedBase}/${cleanPath}`.replace(/([^:])\/{2,}/g, '$1/');
+  }
+
+  return `${normalizedBase}@${VERSION}/dist/${cleanPath}`;
 }
 
 export function getWASMUrl(codec: string, file: string): string {

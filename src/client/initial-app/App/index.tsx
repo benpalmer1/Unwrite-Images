@@ -7,6 +7,8 @@ import { h, Component } from 'preact';
 import { linkRef } from 'shared/prerendered-app/util';
 import * as style from './style.css';
 import 'add-css:./style.css';
+import 'add-css:shared/prerendered-app/colors.css';
+import 'add-css:shared/prerendered-app/util.css';
 import 'file-drop-element';
 import 'shared/custom-els/snack-bar';
 import Intro from 'shared/prerendered-app/Intro';
@@ -20,7 +22,7 @@ declare const __EMBEDDED__: boolean;
 const swBridgePromise: Promise<{
   offliner: (showSnack: any) => void;
   getSharedImage: () => Promise<File | undefined>;
-}> = (__EMBEDDED__)
+}> = __EMBEDDED__
   ? Promise.resolve({
       offliner: () => {},
       getSharedImage: async () => undefined,
@@ -31,12 +33,14 @@ function back() {
   window.history.back();
 }
 
-interface Props {}
+interface Props {
+  onEditorStateChange?: (isOpen: boolean) => void;
+}
 
 interface State {
   awaitingShareTarget: boolean;
   file?: File;
-  isEditorOpen: Boolean;
+  isEditorOpen: boolean;
   Compress?: typeof import('client/lazy-app/Compress').default;
 }
 
@@ -51,6 +55,7 @@ export default class App extends Component<Props, State> {
   };
 
   snackbar?: SnackBarElement;
+  private previousBodyOverflow?: string;
 
   constructor() {
     super();
@@ -80,8 +85,26 @@ export default class App extends Component<Props, State> {
     document.body.addEventListener('gesturestart', (event: any) => {
       event.preventDefault();
     });
+  }
 
+  componentDidMount() {
     window.addEventListener('popstate', this.onPopState);
+    const isEditorOpen = location.pathname === ROUTE_EDITOR;
+    if (isEditorOpen !== this.state.isEditorOpen) {
+      this.setState({ isEditorOpen });
+    }
+    this.applyEditorModeEffects(isEditorOpen);
+  }
+
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    if (prevState.isEditorOpen !== this.state.isEditorOpen) {
+      this.applyEditorModeEffects(this.state.isEditorOpen);
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('popstate', this.onPopState);
+    this.applyEditorModeEffects(false);
   }
 
   private onFileDrop = ({ files }: FileDropEvent) => {
@@ -104,6 +127,30 @@ export default class App extends Component<Props, State> {
     return this.snackbar.showSnackbar(message, options);
   };
 
+  private applyEditorModeEffects(isOpen: boolean) {
+    this.props.onEditorStateChange?.(isOpen);
+
+    if (typeof document === 'undefined') {
+      return;
+    }
+
+    const body = document.body;
+
+    if (isOpen) {
+      if (this.previousBodyOverflow === undefined) {
+        this.previousBodyOverflow = body.style.overflow;
+      }
+      body.style.overflow = 'hidden';
+    } else {
+      if (this.previousBodyOverflow !== undefined) {
+        body.style.overflow = this.previousBodyOverflow;
+        this.previousBodyOverflow = undefined;
+      } else {
+        body.style.removeProperty('overflow');
+      }
+    }
+  }
+
   private onPopState = () => {
     this.setState({ isEditorOpen: location.pathname === ROUTE_EDITOR });
   };
@@ -122,9 +169,12 @@ export default class App extends Component<Props, State> {
     { file, isEditorOpen, Compress, awaitingShareTarget }: State,
   ) {
     const showSpinner = awaitingShareTarget || (isEditorOpen && !Compress);
+    const containerClass = isEditorOpen
+      ? `${style.app} ${style.appFullScreen}`
+      : style.app;
 
     return (
-      <div class={style.app}>
+      <div class={containerClass}>
         <file-drop onfiledrop={this.onFileDrop} class={style.drop}>
           {showSpinner ? (
             <loading-spinner class={style.appLoader} />

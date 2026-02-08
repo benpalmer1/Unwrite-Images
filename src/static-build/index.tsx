@@ -14,8 +14,6 @@ import { h } from 'preact';
 
 import { renderPage, writeFiles } from './utils';
 import IndexPage from './pages/index';
-import * as iconLargeMaskable from 'img-url:static-build/assets/icon-large-maskable.png';
-import * as iconLarge from 'img-url:static-build/assets/icon-large.png';
 import * as screenshot1 from 'img-url:static-build/assets/screenshot1.png';
 import * as screenshot2 from 'img-url:static-build/assets/screenshot2.jpg';
 import * as screenshot3 from 'img-url:static-build/assets/screenshot3.jpg';
@@ -62,19 +60,6 @@ const toOutput: Output = {
     orientation: 'any',
     background_color: '#fff',
     theme_color: '#0ea5e9',
-    icons: [
-      {
-        src: iconLarge.default,
-        type: lookupMime(iconLarge.default),
-        sizes: manifestSize(iconLarge),
-      },
-      {
-        src: iconLargeMaskable.default,
-        type: lookupMime(iconLargeMaskable.default),
-        sizes: manifestSize(iconLargeMaskable),
-        purpose: 'maskable',
-      },
-    ],
     description:
       'Optimise images for the web. Shrink file sizes, compare results side‑by‑side, and save the best quality.',
     lang: 'en',

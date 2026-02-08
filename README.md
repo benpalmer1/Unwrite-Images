@@ -58,7 +58,7 @@ dispose();
 
 ### Options
 
-- `theme`: 'inherit' | 'light' | 'dark' (default: 'inherit')
+- `theme`: 'inherit' | 'unwrite-light' | 'unwrite-dark' (default: 'inherit')
 - `cdnBase`: Optional CDN base URL override
 - `version`: Optional version for CDN URLs
 
